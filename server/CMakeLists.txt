@@ -15,13 +15,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #find_package(fmt CONFIG REQUIRED)
 
 set(CPP_DIR src)
-set(CPP ${CPP_DIR}/serverAsync.cpp)
+set(CPP ${CPP_DIR}/serverAsync.cpp ${CPP_DIR}/UAS.cpp)
 
 include_directories(include)
+include_directories(../lib/asio/asio/include)
 #include_directories(vcpkg_installed/x64-linux/include)
-add_library(${PROJECT_NAME} SHARED ${CPP})
+add_executable(${PROJECT_NAME} ${CPP})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_EXTENSIONS OFF)
-target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
+#target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
 #target_include_directories(${PROJECT_NAME} PRIVATE vcpkg_installed/x64-linux/include)
-#target_link_libraries(${PROJECT_NAME} PRIVATE glfw glad::glad glm::glm fmt::fmt)
+target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
