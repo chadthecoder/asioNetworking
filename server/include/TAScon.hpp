@@ -14,33 +14,20 @@ class TAScon
 public:
   typedef std::shared_ptr<TAScon> pointer;
 
-  static pointer create(asio::io_context& io_context)
-  {
-    return pointer(new TAScon(io_context));
-  }
+  static TAScon::pointer create(asio::io_context& io_context);
+  //pointer create(asio::io_context& io_context);
 
-  asio::ip::tcp::socket& socket()
-  {
-    return socket_;
-  }
+  asio::ip::tcp::socket& socket();
 
-  void start()
-  {
-    message_ = make_daytime_string();
-
-    asio::async_write(socket_, asio::buffer(message_),
-        std::bind(&TAScon::handle_write, shared_from_this()));
-  }
+  void start();
 
 private:
   TAScon(asio::io_context& io_context)
     : socket_(io_context)
-  {
-  }
+  {}
 
   void handle_write()
-  {
-  }
+  {}
 
   asio::ip::tcp::socket socket_;
   std::string message_;

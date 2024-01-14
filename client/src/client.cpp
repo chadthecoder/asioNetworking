@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
         socket.open(asio::ip::udp::v4());
 
         size_t bytes = socket.available();
-        char data[1];
+        char data[128] = "yay2";
         // std::vector<char> vBuff(bytes);
         //  boost::array<char, 1> send_buf = {{0}};
         socket.send_to(asio::buffer(data), receiver_endpoint);
