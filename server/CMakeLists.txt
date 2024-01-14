@@ -15,10 +15,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #find_package(fmt CONFIG REQUIRED)
 
 set(CPP_DIR src)
-set(CPP ${CPP_DIR}/serverAsync.cpp ${CPP_DIR}/UAS.cpp)
+set(CPP ${CPP_DIR}/serverAsync.cpp ${CPP_DIR}/utils.cpp ${CPP_DIR}/UAS.cpp)
 
 include_directories(include)
 include_directories(../lib/asio/asio/include)
+
 #include_directories(vcpkg_installed/x64-linux/include)
 add_executable(${PROJECT_NAME} ${CPP})
 

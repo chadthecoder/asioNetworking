@@ -17,6 +17,8 @@ git clone --recurse-submodules ${ssh-name}
 ../lib/vcpkg/vcpkg install (lib here)
 ../lib/vcpkg/vcpkg add port (lib here)
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../lib/vcpkg/scripts/buildsystems/vcpkg.cmake 
+cd build
+make
 
 # Resources:
 

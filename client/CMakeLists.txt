@@ -10,7 +10,7 @@ set(CPP_DIR src)
 set(CPP ${CPP_DIR}/client.cpp)
 
 include_directories(include)
-include_directories(../include/asio-1.28.0/include)
+include_directories(../lib/asio/asio/include)
 add_executable(${PROJECT_NAME} ${CPP})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_EXTENSIONS OFF)
