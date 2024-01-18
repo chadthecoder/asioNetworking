@@ -10,6 +10,7 @@ void UAS::start_receive()
 {
     socket_.async_receive_from(
         asio::buffer(recv_buffer_), remote_endpoint_,
+        //recv_buffer_, remote_endpoint_,
         std::bind(&UAS::handle_receive,
         this,
         std::placeholders::_1,
@@ -17,11 +18,12 @@ void UAS::start_receive()
 }
 
 void UAS::handle_receive(const asio::error_code& error,
-  std::size_t /*bytes_transferred*/)
+  std::size_t bytes_transferred)
 {
     if (!error)
     {
-      std::cout << "rec from client: " << recv_buffer_ .data() << "\n";
+      std::cout << "rec from client: " << recv_buffer_ .data() << " : " << recv_buffer_.size() << 
+      " : " << bytes_transferred << "\n";
 
       std::shared_ptr<std::string> message(
           new std::string(make_daytime_string()));

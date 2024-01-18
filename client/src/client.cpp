@@ -39,10 +39,17 @@ int main(int argc, char *argv[])
         socket.open(asio::ip::udp::v4());
 
         size_t bytes = socket.available();
+
         char data[128] = "yay2";
+        std::string data5 = "yay3";
+        asio::mutable_buffer mb{(void *)data5.data(), data5.size()};
+        asio::mutable_buffer mb2 = asio::buffer(data5);
+        std::cout << "buffer size: " << mb2.size() << " : " << typeid(mb2).name() << "\n";
         // std::vector<char> vBuff(bytes);
         //  boost::array<char, 1> send_buf = {{0}};
-        socket.send_to(asio::buffer(data), receiver_endpoint);
+
+        //socket.send_to(asio::buffer(data), receiver_endpoint);
+        socket.send_to(mb2, receiver_endpoint);
 
         // while (true)
         //{
@@ -50,6 +57,7 @@ int main(int argc, char *argv[])
         size_t bytes2 = socket.available();
         char data2[128];
         // std::vector<char, 128> vBuff2();
+  
         //  boost::array<char, 128> recv_buf;
         asio::ip::udp::endpoint sender_endpoint =
             *resolver.resolve(asio::ip::udp::v4(), argv[1], "1025").begin();

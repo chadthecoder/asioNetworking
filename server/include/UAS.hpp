@@ -25,4 +25,5 @@ private:
   asio::ip::udp::socket socket_;
   asio::ip::udp::endpoint remote_endpoint_;
   std::array<char, 128> recv_buffer_;
+  //asio::const_buffer recv_buffer_;
 };
